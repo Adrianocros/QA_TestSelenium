@@ -21,3 +21,7 @@ class BasePage:
 
     def check_element_exists(self,locator):
         assert self.element_find(locator).is_displayed(), f"Element '{locator}' not found on canvas."
+
+    #method that returns the text of the element
+    def get_text_element(self,locator):
+        return self.element_find(locator).text
