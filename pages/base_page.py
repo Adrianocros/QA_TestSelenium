@@ -32,3 +32,9 @@ class BasePage:
     def wait_element_appear(self, locator, timeout=60):
         return WebDriverWait(self.driver,timeout).until(EC.presence_of_element_located(*locator))
 
+    #method to check whether the element exists or not
+    def check_element_exists(self,locator):
+        assert self.element_find(locator), f"Element '{locator}' does not exist but is expected to exist!"
+
+    def check_element_not_exists(self,locator):
+        assert len(self.elements_find(locator)) == 0, f"Element '{locator}' exist  but is not expected to exist! "
