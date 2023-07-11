@@ -2,6 +2,8 @@
 import conftest
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver import ActionChains
+
 class BasePage:
     def __init__(self):
         self.driver = conftest.driver
@@ -38,3 +40,13 @@ class BasePage:
 
     def check_element_not_exists(self,locator):
         assert len(self.elements_find(locator)) == 0, f"Element '{locator}' exist  but is not expected to exist! "
+
+    #Double click and right click
+    def click_double(self, locator):
+        element = self.wait_element_appear(locator)
+        ActionChains(self.driver).double_click().perform()
+
+    def click_right(self,locator):
+        element = self.wait_element_appear(locator)
+        ActionChains(self.driver).context_click(element).perform()
+
