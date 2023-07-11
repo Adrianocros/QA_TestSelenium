@@ -9,7 +9,8 @@ class HomePage(BasePage):
         self.driver = conftest.driver
         self.title_page = (By.XPATH,"//span[@class='title']")
         self.item_inventory = (By.XPATH, "//*[@class='inventory_item_name' and text()='{}']")
-        self.add_to_cart = (By.XPATH, "//*[text()='Add to cart']")
+        self.button_add_to_cart = (By.XPATH, "//*[text()='Add to cart']")
+        self.icon_cart = (By.XPATH,"//*[@class='shopping_cart_link']")
 
 
     def verif_successfull_login(self):
@@ -20,4 +21,7 @@ class HomePage(BasePage):
     def add_item_cart(self,name_item):
         item = (self.item_inventory[0],self.item_inventory[1].format(name_item))
         self.click(item)
-        self.click(self.add_to_cart)
+        self.click(self.button_add_to_cart)
+
+    def access_cart(self):
+        self.click(self.icon_cart)
